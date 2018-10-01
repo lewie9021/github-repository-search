@@ -27,8 +27,3 @@ export const fetchRepository = (userId, repoId) => {
       }
     });
 }
-
-export const fetchRepositoryReadme = (userId, repoId) => {
-  return fetch(`${GITHUB_BASE_URL}/repos/${userId}/${repoId}/readme`)
-    .then((res) => res.json());
-}
