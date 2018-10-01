@@ -10,7 +10,7 @@ class RepositorySearchPage extends React.Component {
 
     this.state = {
       loading: false,
-      searchResults: null,
+      data: null,
       error: null
     }
   }
@@ -21,33 +21,32 @@ class RepositorySearchPage extends React.Component {
       data: null
     });
 
-    githubApi.fetchRepositories(searchText)
+    return githubApi.fetchRepositories(searchText)
       .then((data) => {
         this.setState({
           loading: false,
-          searchResults: data,
+          data: data,
           error: null
-        })
+        });
       })
       .catch((err) => {
         this.setState({
           loading: false,
-          searchResults: null,
+          data: null,
           error: err
-        })
+        });
       });
   }
 
-
   render() {
-    const {loading, searchResults, error} = this.state;
+    const {loading, data, error} = this.state;
 
     return (
       <div class="container">
         <SearchBox onSubmit={this.handleSearchSubmit} />        
         <SearchResults
           loading={loading}
-          searchResults={searchResults}
+          searchResults={data}
           error={error}
         />
       </div>
