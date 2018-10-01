@@ -2,13 +2,21 @@ import React from "react";
 
 class SearchResult extends React.Component {
 
+  handleClick(repository) {
+    alert(JSON.stringify(repository, null, 2));
+  };
+
   render() {
     const { repository } = this.props;
 
     return (
-      <li class="list-group-item">
+      <a
+        class="list-group-item list-group-item-action"
+        style={{cursor: "pointer"}}
+        onClick={() => this.handleClick(repository)}
+      >
         [{repository.owner.login}] {repository.name} - {repository.description}
-      </li>
+      </a>
     );
   }
 
