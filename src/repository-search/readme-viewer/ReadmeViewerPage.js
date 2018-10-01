@@ -60,11 +60,11 @@ class ReadmeViewerPage extends React.Component {
         <h2>{data.fullName}</h2>
         <hr />
         <h3>
-          <span class="badge badge-primary">Stars: {data.stars}</span>
+          <span className="badge badge-primary">Stars: {data.stars}</span>
           &nbsp;
-          <span class="badge badge-secondary">Forks: {data.forks}</span>
+          <span className="badge badge-secondary">Forks: {data.forks}</span>
           &nbsp;
-          <span class="badge badge-warning">Issues: {data.issues}</span>
+          <span className="badge badge-warning">Issues: {data.issues}</span>
         </h3>
         <div>
           <ReactMarkdown source={data.readme} />

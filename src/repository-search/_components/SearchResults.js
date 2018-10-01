@@ -4,7 +4,7 @@ import SearchResult from "./SearchResult";
 class SearchResults extends React.Component {
 
   render() {
-    const { loading, searchResults, error } = this.props;
+    const { loading, searchResults, error, onRepositoryClick } = this.props;
 
     if (loading)
       return <span>Loading...</span>;
@@ -19,9 +19,9 @@ class SearchResults extends React.Component {
       return <span>No search results found</span>;
 
     return (
-      <ul class="list-group">
+      <ul className="list-group">
         {searchResults.items.map((repository) => (
-          <SearchResult key={repository.id} repository={repository} /> 
+          <SearchResult key={repository.id} repository={repository} onRepositoryClick={onRepositoryClick} /> 
         ))}
       </ul>
     );

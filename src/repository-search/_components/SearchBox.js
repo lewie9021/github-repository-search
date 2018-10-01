@@ -1,42 +1,34 @@
 import React from "react";
 
 class SearchBox extends React.Component {
-  
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      searchText: ""
-    };
-  }
 
   handleSubmit = (e) => {
-    const { onSubmit } = this.props;
+    const { searchText, onSubmit } = this.props;
 
     // Avoid submitting the page.
     e.preventDefault();
 
-    onSubmit(this.state.searchText);
+    onSubmit(searchText);
   }
 
   render() {
-    const { searchText } = this.state;
+    const { searchText, onTextChange } = this.props;
 
     return (
       <form onSubmit={this.handleSubmit}>
-        <div class="input-group mb-3">
+        <div className="input-group mb-3">
           <input
             type="text"
-            class="form-control"
+            className="form-control"
             aria-label="Search for a respository"
             placeholder="Search for a respository"
             value={searchText}
-            onChange={(e) => this.setState({searchText: e.target.value})}
+            onChange={onTextChange}
           />
-          <div class="input-group-append">
+          <div className="input-group-append">
             <button 
               type="submit"
-              class="btn btn-outline-secondary"
+              className="btn btn-outline-secondary"
             >
               Search
             </button>

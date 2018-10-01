@@ -8,7 +8,8 @@ class RepositorySearchPage extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
+    this.state = props.location.state || {
+      searchText: "",
       loading: false,
       data: null,
       error: null
@@ -25,7 +26,7 @@ class RepositorySearchPage extends React.Component {
       .then((data) => {
         this.setState({
           loading: false,
-          data: data,
+          data,
           error: null
         });
       })
@@ -36,18 +37,36 @@ class RepositorySearchPage extends React.Component {
           error: err
         });
       });
-  }
+  };
+
+  handleSearchTextChange = (e) => {
+    this.setState({
+      searchText: e.target.value
+    });
+  };
+
+  handleRepositoryClick = (repository) => {
+    const { history } = this.props;
+
+    history.replace(history.location.pathname, this.state);
+    history.push(`/repo/${repository.full_name}`);
+  };
 
   render() {
-    const {loading, data, error} = this.state;
+    const {searchText, loading, data, error} = this.state;
 
     return (
-      <div class="container">
-        <SearchBox onSubmit={this.handleSearchSubmit} />        
+      <div className="container">
+        <SearchBox 
+          searchText={searchText}
+          onTextChange={this.handleSearchTextChange}
+          onSubmit={this.handleSearchSubmit}
+        />        
         <SearchResults
           loading={loading}
           searchResults={data}
           error={error}
+          onRepositoryClick={this.handleRepositoryClick}
         />
       </div>
     );
