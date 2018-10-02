@@ -7,7 +7,7 @@ class ReadmeViewerPage extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
+    this.state = props.location.state || {
       loading: false,
       data: null,
       error: null
@@ -15,8 +15,12 @@ class ReadmeViewerPage extends React.Component {
   }
 
   componentDidMount() {
-    const { match } = this.props;
+    const { match, history } = this.props;
     const { userId, repoId } = match.params;
+
+    // Already fetched historically.
+    if (this.state.data)
+      return;
 
     this.setState({
       loading: true,
@@ -29,6 +33,14 @@ class ReadmeViewerPage extends React.Component {
           loading: false,
           data: data,
           error: null
+        });
+
+        history.replace(history.location.pathname, {
+          ...this.state,
+          // Set state is async.
+          loading: false,
+          data: data,
+          error: null
         })
       })
       .catch((err) => {
@@ -36,7 +48,7 @@ class ReadmeViewerPage extends React.Component {
           loading: false,
           data: null,
           error: err
-        })
+        });
       });
   }
 
@@ -64,7 +76,7 @@ class ReadmeViewerPage extends React.Component {
           &nbsp;
           <span className="badge badge-secondary">Forks: {data.forks}</span>
           &nbsp;
-          {/* <span className="badge badge-warning">Issues: {data.issues}</span> */}
+          <span className="badge badge-warning">Issues: {data.issues}</span>
         </h3>
         <div>
           <ReactMarkdown source={data.readme} />
