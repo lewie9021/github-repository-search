@@ -1,6 +1,8 @@
-import React from "react";
-import * as githubApi from "../_shared/github-api/githubApi";
+import React, { Fragment } from "react";
 import ReactMarkdown from "react-markdown";
+import * as githubApi from "../_shared/github-api/githubApi";
+import LoadContent from "../_shared/load-content/LoadContent";
+import Badges from "./_components/Badges";
 
 class ReadmeViewerPage extends React.Component {
 
@@ -55,32 +57,35 @@ class ReadmeViewerPage extends React.Component {
   render() {
     const {loading, data, error} = this.state;
 
-    if (loading)
-      return <span>Loading...</span>;
-
-    if (error)
-      return <span>{error.message}</span>;
-
-    if (!data)
-      return null;
-
-    if (!data.readme)
-      return <span>No README found</span>
-
     return (
       <div className="container">
-        <h2>{data.fullName}</h2>
-        <hr />
-        <h3>
-          <span className="badge badge-primary">Stars: {data.stars}</span>
-          &nbsp;
-          <span className="badge badge-secondary">Forks: {data.forks}</span>
-          &nbsp;
-          <span className="badge badge-warning">Issues: {data.issues}</span>
-        </h3>
-        <div>
-          <ReactMarkdown source={data.readme} />
-        </div>
+        <LoadContent
+          loading={loading}
+          data={data}
+          error={error}
+        >
+          {() => {
+            if (!data.readme)
+              return <span>No README found</span>;
+
+            return (
+              <Fragment>
+                <h2>
+                  <span>{data.fullName}</span>
+                  <Badges
+                    stars={data.stars}
+                    forks={data.forks}
+                    issues={data.issues}
+                  />
+                </h2>
+                <hr />
+                <div>
+                  <ReactMarkdown source={data.readme} />
+                </div>
+              </Fragment>
+            );
+          }}
+        </LoadContent>
       </div>
     );
   }

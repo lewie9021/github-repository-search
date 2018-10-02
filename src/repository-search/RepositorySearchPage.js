@@ -1,7 +1,7 @@
 import React from "react";
 import SearchResults from "./_components/SearchResults";
 import SearchBox from "./_components/SearchBox";
-import * as githubApi from "./_shared/github-api/githubApi";
+import * as githubApi from "../_shared/github-api/githubApi";
 
 class RepositorySearchPage extends React.Component {
 
