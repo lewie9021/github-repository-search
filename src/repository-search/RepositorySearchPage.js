@@ -53,7 +53,7 @@ class RepositorySearchPage extends React.Component {
   };
 
   render() {
-    const {searchText, loading, data, error} = this.state;
+    const { searchText, loading, data, error } = this.state;
 
     return (
       <div className="container">
