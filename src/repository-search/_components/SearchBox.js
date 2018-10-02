@@ -1,6 +1,6 @@
 import React from "react";
 
-class SearchBox extends React.Component {
+class SearchBox extends React.PureComponent {
 
   handleSubmit = (e) => {
     const { searchText, onSubmit } = this.props;

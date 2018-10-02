@@ -1,6 +1,6 @@
 import React from "react";
 
-class Badges extends React.Component {
+class Badges extends React.PureComponent {
 
   render() {
     const { stars, forks, issues } = this.props;

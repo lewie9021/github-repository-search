@@ -1,6 +1,6 @@
 import React from "react";
 
-class SearchResult extends React.Component {
+class SearchResult extends React.PureComponent {
 
   getDescription(repository) {
     if (!repository.description)
