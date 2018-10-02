@@ -14,12 +14,18 @@ class SearchResults extends React.Component {
         error={error}
       >
         {() => {
-          if (!searchResults.items.length)
-            return <span>No search results found</span>;
+          const repositories = searchResults.items || [];
+
+          if (!repositories.length)
+            return (
+              <div class="alert alert-info" role="alert">
+                No search results found
+              </div>
+            );
 
           return (
             <ul className="list-group">
-              {searchResults.items.map((repository) => (
+              {repositories.map((repository) => (
                 <SearchResult
                   key={repository.id}
                   repository={repository}

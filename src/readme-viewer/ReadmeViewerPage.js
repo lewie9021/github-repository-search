@@ -66,7 +66,11 @@ class ReadmeViewerPage extends React.Component {
         >
           {() => {
             if (!data.readme)
-              return <span>No README found</span>;
+              return (
+                <div class="alert alert-info" role="alert">
+                  No README found
+                </div>
+              );
 
             return (
               <Fragment>
