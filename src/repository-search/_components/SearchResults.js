@@ -20,7 +20,11 @@ class SearchResults extends React.Component {
           return (
             <ul className="list-group">
               {searchResults.items.map((repository) => (
-                <SearchResult key={repository.id} repository={repository} onRepositoryClick={onRepositoryClick} /> 
+                <SearchResult
+                  key={repository.id}
+                  repository={repository}
+                  onRepositoryClick={onRepositoryClick}
+                /> 
               ))}
             </ul>
           );

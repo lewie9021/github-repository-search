@@ -1,4 +1,5 @@
 import React from "react";
+import "./searchResult.css";
 
 class SearchResult extends React.PureComponent {
 
@@ -17,16 +18,15 @@ class SearchResult extends React.PureComponent {
 
     return (
       <button
-      className="list-group-item list-group-item-action"
-        style={{cursor: "pointer"}}
+        className="list-group-item list-group-item-action"
         onClick={() => onRepositoryClick(repository)}
       >
-        <div style={{float: "left", marginRight: "1.25rem"}}>
-            <img
-              className="img-reponsive img-rounded"
-              style={{width: 128}} alt={`${repository.owner.login}'s avatar`}
-              src={repository.owner.avatar_url}
-            />
+        <div>
+          <img
+            className="img-reponsive img-rounded"
+            alt={`${repository.owner.login}'s avatar`}
+            src={repository.owner.avatar_url}
+          />
         </div>
         <div>
           <h3>{repository.full_name}</h3>

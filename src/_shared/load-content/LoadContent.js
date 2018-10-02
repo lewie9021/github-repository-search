@@ -1,4 +1,5 @@
 import React from "react";
+import "./loadContent.css";
 
 class LoadContent extends React.Component {
 
@@ -7,17 +8,15 @@ class LoadContent extends React.Component {
 
     if (loading)
       return (
-        <div style={{textAlign: "center"}}>
+        <div className="loading-box">
           <span>Loading...</span>
         </div>
       );
 
     if (error)
       return (
-        <div style={{textAlign: "center"}}>
-          <span>There was a problem with your request:</span>
-          <br />
-          <span style={{color: "grey"}}>{error.message}</span>
+        <div class="alert alert-danger" role="alert">
+          There was a problem with your request: {error.message}
         </div>
       )
 

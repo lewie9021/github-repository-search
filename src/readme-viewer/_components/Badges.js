@@ -1,4 +1,5 @@
 import React from "react";
+import "./badges.css";
 
 class Badges extends React.PureComponent {
 
@@ -6,7 +7,7 @@ class Badges extends React.PureComponent {
     const { stars, forks, issues } = this.props;
 
     return (
-      <span style={{float: "right", textAlign: "center"}}>
+      <span className="badges">
         <span className="badge badge-primary">Stars: {stars}</span>
         &nbsp;
         <span className="badge badge-secondary">Forks: {forks}</span>

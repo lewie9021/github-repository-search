@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import "./app.css";
 import RepositorySearchPage from '../repository-search/RepositorySearchPage';
 import ReadmeViewerPage from '../readme-viewer/ReadmeViewerPage';
 

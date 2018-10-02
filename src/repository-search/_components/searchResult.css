@@ -1,0 +1,12 @@
+.list-group-item-action {
+  cursor: pointer;
+}
+
+.list-group-item-action > div {
+  float: left;
+  margin-right: 1.25rem;
+}
+
+.list-group-item-action img {
+  width: 128px;
+}
